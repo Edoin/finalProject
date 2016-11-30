@@ -1,0 +1,27 @@
+@import helper._
+@()(implicit header: RequestHeader, messages: Messages, pm: PageMeta, wja: WebJarAssets)
+@page {
+  <section class="row align-center">
+    <div class="small-12 columns text-center logo-container">
+      <img src="@routes.Assets.versioned("images/logo2.png")" alt="logo" class="index-logo">
+    </div>
+
+    <div class="small-12 medium-6 columns">
+      <div class="row">
+        <div class="small-12 medium-6 columns">
+          <a href="#" class="expanded hollow button">Login</a>
+        </div>
+        <div class="small-12 medium-6 columns">
+          <a href="#" class="expanded button">Sign Up</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="small-12 columns">
+			<header>
+				<h3>ABOUT US</h3>
+			</header>
+			<p class="text-justify">"Tabi Ta" is a cebuano term for "Let's talk".</p>
+    </div>
+  </section>
+}

@@ -1,0 +1,21 @@
+@(page: String)
+<header class="row expanded minimal-head-container">
+  <div class="shrink columns">
+    <img class="minimal-head-logo" src="@routes.Assets.versioned("images/logo2.png")" alt="">
+  </div>
+  <div class="small-12 medium-2 small-order-2 medium-order-1 columns text-center">
+    <h4>@page.toUpperCase</h4>
+  </div>
+  <div class="small-order-1 columns">
+    <nav>
+      <ul class="menu align-right">
+        <li><a href="#">About Us</a></li>
+        @{ if(page == "login") { <li><a href="#">Sign Up</a></li> } 
+        	else { <li><a href="#">Login</a></li> }
+        }
+        
+        <li><a href="#">Home</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>

@@ -1,0 +1,79 @@
+@import helper._
+@(loginForm: Form[(String,String)], forgotPasswordForm: Form[(String,String)])(implicit header: RequestHeader, messages: Messages, pm: PageMeta, wja: WebJarAssets)
+@page {
+
+  @minimalHead("login")
+
+  <section class="row align-center">
+    <div class="small-12 columns text-center logo-container">
+      <img src="@routes.Assets.versioned("images/logo2.png")" alt="logo" class="index-logo">
+    </div>
+    <div class="small-12 medium-6 columns">
+      <div class="row align-center">
+        <div class="small-12 columns">
+          @form( routes.HomeController.dash ) {
+            @inputText(
+              loginForm("username"),
+              '_label -> "Username",
+              '_showConstraints -> false
+            )
+        </div>
+        <div class="small-12 columns">
+            @inputPassword(
+              loginForm("password"),
+              '_label -> "Password",
+              '_showConstraints -> false
+            )
+        </div>
+        <div class="small-12 columns">
+        <a href="#" data-open="forgotPassword">Forgot Password?</a>
+        </div>
+        <div class="small-12 columns text-right">
+          <input type="submit" name="submit" value="Submit"  class="button"/>
+        </div>
+        }
+      </div></div>
+    </div>
+  </section>
+  <div class="reveal row" id="forgotPassword" data-reveal>
+    <div class="small-12 columns">
+      <h4>Reset Password</h4>
+      <p>Please Enter the following information</p>
+    </div>
+    <div class="small-12 medium-7 columns">
+      <div class="row">
+        <div class="small-12 columns">
+          @form( routes.HomeController.showData ){
+            @inputText(
+              forgotPasswordForm("username"),
+              '_label -> "Username",
+              '_showConstraints ->false
+            )
+          
+        </div>
+        <div class="small-12 columns">
+            @inputText(
+              forgotPasswordForm("email"),
+              '_label -> "Email Address",
+              '_showConstraints -> false
+            )
+        </div>
+      </div>
+    </div>
+    <div class="class small-12 columns">
+      <div class="row">
+        <div class="small-6 columns">
+          <input type="button" data-close name="cancel" value="Cancel"  class="hollow button"/>
+        </div>
+        <div class="small-6 columns">
+         <input type="submit" name="submit" value="Submit"  class="button"/>
+        </div>
+      </div>
+      }
+    </div>
+    <button class="close-button" data-close aria-label="Close reveal" type="button">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+}

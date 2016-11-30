@@ -1,0 +1,13 @@
+@(content: Html)(implicit header: RequestHeader, messages: Messages, pm: PageMeta, wja: WebJarAssets)
+@base {
+	  <link href="@routes.Assets.versioned("styles/main.css")" rel="stylesheet">
+} {
+	
+	
+	@content
+	@foot()
+
+  <script src="@routes.WebJarAssets.at(wja.locate("jquery.min.js"))"></script>
+  <script src="@routes.WebJarAssets.at(wja.locate("foundation.min.js"))"></script>
+  <script src="@routes.Assets.versioned("scripts/main.js")"></script>
+}

@@ -1,0 +1,31 @@
+@import 'settings';
+
+@mixin image-max-width( $width ) {
+	max-width: $width;	
+}
+
+header{
+	&.minimal-head-container { padding: 5px 0; }
+	.minimal-head-logo { @include image-max-width(40px); }
+}
+
+section {
+	.logo-container { 
+		.index-logo { 
+			padding: 5% 2px; 
+			width: 100%;
+			height: auto;
+			@include image-max-width(400px)
+		}
+	}
+
+}
+
+footer {
+	background-color: #9c9c9c;
+	ul {
+		list-style: none;
+	}
+	a { color: inherit; }
+	.footer-info { padding-top: 20px; }
+}

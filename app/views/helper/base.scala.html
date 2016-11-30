@@ -1,0 +1,14 @@
+@(header: Html = Html(""))(content: Html)(implicit requestHeader: RequestHeader, messages: Messages, pageMeta: PageMeta)
+<!DOCTYPE html>
+<html lang="@messages.lang.code">
+<head>
+  <meta charset="UTF-8">
+  @pageMeta.toHtml
+  <link href="@routes.Assets.versioned("styles/global.min.css")" rel="stylesheet">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  @header
+</head>
+<body>
+  @content
+</body>
+</html>
