@@ -31,7 +31,7 @@ class Users @Inject()(
 	def findByUsername(username: String): Future[Option[User]] =
 		db.run(query.filter(_.username === username).result.headOption)
 
-	class UsersTable(tag: Tag) extends Table[User](tag,"users"){
+	class UsersTable(tag: Tag) extends Table[User](tag,"USERS"){
 		def id = column[Int]("id", O.PrimaryKey, O.AutoInc)
 		def fullname = column[String]("fullname")
 		def birthdate = column[java.sql.Date]("birthdate")

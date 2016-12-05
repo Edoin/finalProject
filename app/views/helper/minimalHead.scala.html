@@ -10,11 +10,11 @@
     <nav>
       <ul class="menu align-right">
         <li><a href="#">About Us</a></li>
-        @{ if(page == "login") { <li><a href="#">Sign Up</a></li> } 
-        	else { <li><a href="#">Login</a></li> }
+        @{ if(page == "login") { <li><a href="signup">Sign Up</a></li> } 
+        	else { <li><a href="login">Login</a></li> }
         }
         
-        <li><a href="#">Home</a></li>
+        <li><a href="@routes.HomeController.index">Home</a></li>
       </ul>
     </nav>
   </div>

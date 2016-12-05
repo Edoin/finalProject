@@ -7,11 +7,16 @@ GET   /                           controllers.HomeController.index
 GET		/login											controllers.HomeController.login
 GET		/signup											controllers.HomeController.signup
 POST	/showData										controllers.HomeController.showData
-POST  /dash												controllers.HomeController.dash
+#POST  /dash												controllers.HomeController.dash
+POST	/loginAction								controllers.HomeController.loginAction
+POST	/signupAction								controllers.HomeController.signupAction
+GET		/all 												controllers.HomeController.all
+POST 	/signupData									controllers.HomeController.signupData
 
 # Account Page
 GET		/auth												controllers.AccountController.index
 GET   /auth/home 									controllers.AccountController.index
+GET 	/auth/friends								controllers.AccountController.friends
 
 # Web jars asset
 GET   /assets/libs/*file          controllers.WebJarAssets.at(file)

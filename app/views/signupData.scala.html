@@ -1,0 +1,39 @@
+@import helper._
+@import models.User
+
+@(data: User)(implicit header: RequestHeader, messages: Messages, pm: PageMeta, wja: WebJarAssets)
+@helper.base{
+  <link rel="stylesheet" href="@routes.Assets.versioned("style/global.css")">
+  <link rel="stylesheet" href="@routes.Assets.versioned("style/main.css")">
+} {
+  
+	<table>
+		<thead>
+			<th>ID</th>
+			<th>Fullname</th>
+			<th>Birthdate</th>
+			<th>Email</th>
+			<th>Number</th>
+			<th>Address</th>
+			<th>Nationality</th>
+			<th>Username</th>
+			<th>Password</th>
+		</thead>
+		<tbody>
+			<tr>
+				<td>@data.optId</td>
+				<td>@data.fullname</td>
+				<td>@data.birthdate</td>
+				<td>@data.email</td>
+				<td>@data.number</td>
+				<td>@data.address</td>
+				<td>@data.nationality</td>
+				<td>@data.username</td>
+				<td>@data.password</td>
+			</tr>
+		</tbody>
+	</table>
+
+  <script src="@routes.Assets.versioned("scripts/main.js")"></script>
+  <script src="@routes.Assets.versioned("scripts/main2.jss")"></script>
+}

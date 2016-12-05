@@ -1,0 +1,28 @@
+@import helper._
+@import models.User
+@()(implicit header: RequestHeader, messages: Messages, pm: PageMeta, wja: WebJarAssets)
+@authPage{  
+  <div class="small-8 columns">
+  	<div class="small-12 columns">
+  		<header>
+  			<h4>My Friends</h4>
+  		</header>
+  	</div>
+    <div class="small-12 medium-6 columns">
+      <ul class="accordion" data-accordion data-allow-all-closed="true">
+        <li class="accordion-item" data-accordion-item>
+          <a href="#" class="accordion-title">Accordion 1</a>
+          <div class="accordion-content" data-tab-content>
+            I would start in the open state, due to using the `is-active` state class.
+          </div>
+        </li> 
+        <li class="accordion-item" data-accordion-item>
+          <a href="#" class="accordion-title">Accordion 1</a>
+          <div class="accordion-content" data-tab-content>
+            I would start in the open state, due to using the `is-active` state class.
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+}

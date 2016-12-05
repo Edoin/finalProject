@@ -45,7 +45,7 @@ class AccountController @Inject() (
     )
   )
 
-  val signupForm = Form (
+  val userForm = Form (
     mapping(
       "id"          -> optional(number),  
       "fullname"    -> nonEmptyText,
@@ -60,29 +60,20 @@ class AccountController @Inject() (
   )
 
   def index = Action { implicit request =>
-    Ok(views.html.auth.index())
+    Ok(views.html.auth.index(userForm))
   }
-
-  // def showData = Action { implicit request =>
-  //   forgotPasswordForm.bindFromRequest.fold(
-  //     formWithErrors => { BadRequest(views.html.login(loginForm,formWithErrors)) },
-  //     data => Ok(views.html.showData(data))
-  //   )
+  
+  // def index = Action { implicit request =>
+  //   request.session.get("connected").map { user =>
+  //     Ok("Hello " + user)
+  //   }.getOrElse {
+  //     Unauthorized("Oops, you are not connected")
+  //   }
   // }
 
-  // def welcome = Action.async { implicit request =>
-  //   users.all.map(user => 
-  //     Ok(views.html.welcome(user))
-  //   )
-  // }
-
-  // def dash = Action { implicit request =>
-  //   loginForm.bindFromRequest.fold(
-  //     formWithErrors => { BadRequest(views.html.login(formWithErrors,forgotPasswordForm)) },
-  //     data => { Ok(views.html.dash(data)) }
-  //   )
-  // }
-
+  def friends = Action { implicit request =>
+    Ok(views.html.auth.friends())
+  }
   // def edit(id: Int) = Action.async { implicit request =>
   // contacts.findById(id).map {
   //   case Some(contact) =>  Ok(views.html.update(signupForm.fill(contact)))

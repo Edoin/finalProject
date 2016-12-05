@@ -1,9 +1,9 @@
 @import helper._
-@(loginForm: Form[(String,String)], forgotPasswordForm: Form[(String,String)])(implicit header: RequestHeader, messages: Messages, pm: PageMeta, wja: WebJarAssets)
+@(loginForm: Form[(String,String)], forgotPasswordForm: Form[(String,String)])(implicit header: RequestHeader, messages: Messages, pm: PageMeta, wja: WebJarAssets, flash: Flash)
 @page {
 
   @minimalHead("login")
-
+  <!-- @flash.get("success").getOrElse("Welcome") -->
   <section class="row align-center">
     <div class="small-12 columns text-center logo-container">
       <img src="@routes.Assets.versioned("images/logo2.png")" alt="logo" class="index-logo">
@@ -11,7 +11,7 @@
     <div class="small-12 medium-6 columns">
       <div class="row align-center">
         <div class="small-12 columns">
-          @form( routes.HomeController.dash ) {
+          @form( routes.HomeController.loginAction ) {
             @inputText(
               loginForm("username"),
               '_label -> "Username",
@@ -60,7 +60,7 @@
         </div>
       </div>
     </div>
-    <div class="class small-12 columns">
+    <div class="small-12 columns">
       <div class="row">
         <div class="small-6 columns">
           <input type="button" data-close name="cancel" value="Cancel"  class="hollow button"/>

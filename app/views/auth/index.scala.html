@@ -1,12 +1,59 @@
-@()(implicit header: RequestHeader, messages: Messages, pm: PageMeta, wja: WebJarAssets)
-@helper.base {
-  <link href="@routes.Assets.versioned("styles/main.css")" rel="stylesheet">
-} {
-  
-  <section class="row">
-  </section>
-
-  <script src="@routes.WebJarAssets.at(wja.locate("jquery.min.js"))"></script>
-  <script src="@routes.WebJarAssets.at(wja.locate("foundation.min.js"))"></script>
-  <script src="@routes.Assets.versioned("scripts/main.js")"></script>
+@import helper._
+@import models.User
+@(userForm: Form[User])(implicit header: RequestHeader, messages: Messages, pm: PageMeta, wja: WebJarAssets)
+@authPage{  
+  <div class="small-8 columns">
+  	<div class="small-12 columns">
+  		<header>
+  			<h4>MyAccount</h4>
+  		</header>
+  	</div>
+  	@form( routes.AccountController.index ) {
+  		<div class="small-12 medium-6 columns">
+  			@inputText(
+  				userForm("fullname"),
+  				'_showConstraints -> false
+  			)
+  		</div>
+  		<div class="small-12 medium-6 columns">
+  			@inputText(
+  				userForm("username"),
+  				'_showConstraints -> false
+  			)
+  		</div>
+  		<div class="small-12 medium-6 columns">
+  			@inputText(
+  				userForm("number"),
+  				'_showConstraints -> false
+  			)
+  		</div>
+  		<div class="small-12 medium-6 columns">
+  			@inputText(
+  				userForm("email"),
+  				'_showConstraints -> false
+  			)
+  		</div>
+  		<div class="small-12 medium-6 columns">
+  			@inputText(
+  				userForm("birthdate"),
+  				'_showConstraints -> false
+  			)
+  		</div>
+  		<div class="small-12 medium-6 columns">
+  			@inputText(
+  				userForm("address"),
+  				'_showConstraints -> false
+  			)
+  		</div>
+  		<div class="small-12 medium-6 columns">
+  			@inputText(
+  				userForm("nationality"),
+  				'_showConstraints -> false
+  			)
+  		</div>
+  		<div class="small-12 medium-6 columns">
+  			<input class="button" type="submit" value="Update Info">
+  		</div>
+  	}
+  </div>
 }

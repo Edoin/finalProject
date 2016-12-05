@@ -78,11 +78,11 @@ class HomeController @Inject() (
     )
   }
 
-  // def welcome = Action.async { implicit request =>
-  //   users.all.map(user => 
-  //     Ok(views.html.welcome(user))
-  //   )
-  // }
+  def all = Action.async { implicit request =>
+    users.all.map(user => 
+      Ok(views.html.all(user))
+    )
+  }
 
   def dash = Action { implicit request =>
     loginForm.bindFromRequest.fold(
@@ -91,27 +91,39 @@ class HomeController @Inject() (
     )
   }
 
-  // def signupAction = Action.async { implicit request =>
-  //   signupForm.bindFromRequest.fold(
-  //     formWithErrors => { Future.successful(
-  //       BadRequest(views.html.signup(formWithErrors))) },
-  //     data => { 
-  //       users.add(data) map ( d =>
-  //         Redirect(routes.HomeController.login).flashing("success" -> "Successfuly signed up. You can now Login using your account")
-  //       )
-  //     }
-  //   )
-  // }
+  def signupData = Action { implicit request =>
+    signupForm.bindFromRequest.fold(
+      formWithErrors => { BadRequest(views.html.signup(formWithErrors)) },
+      data => Ok(views.html.signupData(data))
+    )
+  }
 
-  // def loginAction = Action.async { implicit request =>
-  //   loginForm.bindFromRequest.fold(
-  //     formWithErrors => { Future.successful(BadRequest(views.html.login(formWithErrors))) },
-  //     data => { users.findByUsername(data._1) map{
-  //       case Some(user) => Redirect(routes.ProfileController.index(user))
-  //       case None => NotFound  
-  //     }}
-  //   )
-  // }
+  def signupAction = Action.async { implicit request =>
+    signupForm.bindFromRequest.fold(
+      formWithErrors => { Future.successful(
+        BadRequest(views.html.signup(formWithErrors))) },
+      data => { 
+        users.add(data) map ( d =>
+          Redirect(routes.HomeController.login).flashing("success" -> "Successfuly signed up. You can now Login using your account")
+        )
+      }
+    )
+  } 
+
+  def loginAction = Action.async { implicit request =>
+    loginForm.bindFromRequest.fold(
+      formWithErrors => { Future.successful(BadRequest(views.html.login(formWithErrors,forgotPasswordForm))) },
+      data => { users.findByUsername(data._1) map{
+        case Some(user) => {
+            //Redirect(routes.ProfileController.index(user))
+            //Ok(views.html.signupData(user))
+            if(data._2 == user.password) Redirect(routes.AccountController.index).withSession("connected" -> "edoin")
+            else NotFound
+        }
+        case None => NotFound  
+      }}
+    )
+  }
 
     // def edit(id: Int) = Action.async { implicit request =>
     // contacts.findById(id).map {
