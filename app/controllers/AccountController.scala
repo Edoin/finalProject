@@ -31,6 +31,8 @@ class AccountController @Inject() (
    * a path of `/`.
    */
   
+  var sessionId = ""
+
   val loginForm = Form (
     tuple(
       "username" -> nonEmptyText,
@@ -59,21 +61,30 @@ class AccountController @Inject() (
     )(User.apply)(User.unapply)
   )
 
-  def index = Action { implicit request =>
-    Ok(views.html.auth.index(userForm))
-  }
-  
   // def index = Action { implicit request =>
-  //   request.session.get("connected").map { user =>
-  //     Ok("Hello " + user)
-  //   }.getOrElse {
-  //     Unauthorized("Oops, you are not connected")
-  //   }
+  //   Ok(views.html.auth.index(userForm))
   // }
+  
+  def index = Action.async { implicit request =>
+    if(request.session.isEmpty)
+      Unauthorized("Oops, you are not connected")
+    else {
+      sessionId = request.session.apply("connected")
+    }
+    users.findById(sessionId.toInt).map {
+      case Some(user) => Ok(views.html.auth.index(userForm.fill(user)))
+      case None => NotFound
+    }
+  }
 
   def friends = Action { implicit request =>
     Ok(views.html.auth.friends())
   }
+
+  def logout = Action { implicit request =>
+    Redirect(routes.HomeController.login).withNewSession
+  }
+
   // def edit(id: Int) = Action.async { implicit request =>
   // contacts.findById(id).map {
   //   case Some(contact) =>  Ok(views.html.update(signupForm.fill(contact)))
