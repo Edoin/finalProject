@@ -1,1 +1,8 @@
 # Play Web Template
+#trainingdb=# CREATE TABLE friendlist(
+#id serial,
+#owneruser varchar(50),
+#friendalias varchar(50),
+#frienduser varchar(50),
+#friendnumber varchar(50)
+#);
